@@ -7,6 +7,12 @@ void write_block(Block* block, FILE* ptr, size_t offset){
     offset = write_buffer_to_file(offset, ptr, &(block->size), 1, sizeof(size_t));
 }
 
+void write_block(size_t next, size_t prev, size_t size, FILE* ptr, size_t offset){
+    offset = write_buffer_to_file(offset, ptr, &next, 1, sizeof(size_t));
+    offset = write_buffer_to_file(offset, ptr, &prev, 1, sizeof(size_t));
+    offset = write_buffer_to_file(offset, ptr, &size, 1, sizeof(size_t));
+}
+
 Block* read_block(FILE* ptr, size_t offset){
     Block* block = mmalloc(Block);
     offset = read_buffer_from_file(offset, ptr, &(block->next), 1, sizeof(size_t));

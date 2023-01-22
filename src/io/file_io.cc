@@ -7,6 +7,8 @@ size_t read_buffer_from_file(size_t offset, FILE* ptr, void* buffer, size_t buff
 
 #ifdef LINUX
 FILE* open_file(const char* filename){
+
+    //TODO: create file at start
     FILE* ptr = fopen(filename, "rb+");  // w for write, b for binary
     if(!ptr) {
         cout << "can't open a file "<< filename << " !" << endl;

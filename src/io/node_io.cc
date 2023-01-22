@@ -94,9 +94,26 @@ size_t read_next_sibling_offset(size_t cur_offset, FILE* ptr){
     return next;
 }
 
+size_t read_first_child_offset(size_t cur_offset, FILE* ptr){
+    size_t child = 0;
+    read_buffer_from_file(cur_offset + NODE_FIRST_CHILD_OFFSET, ptr, &child, 1, sizeof(size_t));
+    return child;
+}
+
+size_t read_node_len(size_t node, FILE* ptr){
+    size_t node_len = 0;
+    read_buffer_from_file(node, ptr, &node_len, 1, sizeof(size_t));
+    return node_len;
+}
+
 void change_next_sibling_offset(size_t node_offset, size_t next_sibling_offset, FILE* ptr){
     write_buffer_to_file(node_offset + NODE_NEXT_SIBLING_OFFSET, ptr, &next_sibling_offset, 1, sizeof(size_t));
 }
+
+void change_prev_sibling_offset(size_t node_offset, size_t prev_sibling_offset, FILE* ptr){
+    write_buffer_to_file(node_offset + NODE_PREV_SIBLING_OFFSET, ptr, &prev_sibling_offset, 1, sizeof(size_t));
+}
+
 
 void change_first_child_offset(size_t node_offset, size_t first_child_offset, FILE* ptr){
     write_buffer_to_file(node_offset + NODE_FIRST_CHILD_OFFSET, ptr, &first_child_offset, 1, sizeof(size_t));
@@ -112,4 +129,22 @@ void write_node_value(Node* node, FILE* ptr){
     offset = write_buffer_to_file(offset, ptr, &node->value_len, 1, sizeof(size_t));
     offset = write_buffer_to_file(offset, ptr, &node->value_t, 1, sizeof(int8_t));
     offset = write_value_to_file(&(node->value_c), get_t_by_int(node->value_t), offset, ptr);
+}
+
+
+void print_tree(size_t tree_offset, FILE* ptr, size_t spaces){
+    // cout << "of:" << tree_offset << "spaces" << spaces << endl;
+    for (size_t i = 0; i < spaces; i ++){
+        cout << "|  ";
+    }
+    Node* node = read_node(tree_offset, ptr);
+    print_node(node);
+    cout << endl;
+    
+    size_t next_sibling = node->next_sibling; 
+    size_t first_child = node->first_child;
+
+    free_node(node);
+    if(first_child) print_tree(first_child, ptr, spaces + 1);
+    if(next_sibling) print_tree(next_sibling, ptr, spaces);
 }

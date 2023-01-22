@@ -34,7 +34,7 @@ $(BUILDDIR)/main.o: $(SRCDIR)/main.cc build
 	$(CC) $< -c -o $@
 
 main: build
-	$(CC) $(ADRESSFLAGS) $(SRCDIR)/main.cc $(SRCDIR)/db/structs.cc $(SRCDIR)/io/file_io.cc $(SRCDIR)/io/block_io.cc $(SRCDIR)/io/node_io.cc $(SRCDIR)/db/db_node.cc $(SRCDIR)/db/free_space.cc $(SRCDIR)/tests.cc -o./build/main
+	$(CC) $(ADRESSFLAGS) $(SRCDIR)/main.cc $(SRCDIR)/db/structs.cc $(SRCDIR)/io/file_io.cc $(SRCDIR)/io/block_io.cc $(SRCDIR)/io/node_io.cc $(SRCDIR)/db/db_node.cc $(SRCDIR)/db/free_space.cc $(SRCDIR)/test/tests.cc -o./build/main
 
 clean:
 	rm -rf $(BUILDDIR)

@@ -31,6 +31,7 @@ typedef struct{
 #define NODE_HEDER_SIZE sizeof(size_t)*5
 #define NODE_VALUE_META_SIZE sizeof(size_t) + sizeof(int8_t)
 #define NODE_NEXT_SIBLING_OFFSET sizeof(size_t)*4
+#define NODE_PREV_SIBLING_OFFSET sizeof(size_t)*3
 #define NODE_FIRST_CHILD_OFFSET sizeof(size_t)
 #define NODE_PARENT_OFFSET sizeof(size_t)*2
 typedef struct Node{
