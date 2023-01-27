@@ -148,3 +148,16 @@ void print_tree(size_t tree_offset, FILE* ptr, size_t spaces){
     if(first_child) print_tree(first_child, ptr, spaces + 1);
     if(next_sibling) print_tree(next_sibling, ptr, spaces);
 }
+
+void update_node(Node* node, FILE* ptr){
+    free_value(node);
+    size_t offset = node->offset;
+    offset = read_buffer_from_file(offset, ptr, &(node->node_len), 1, sizeof(size_t));
+    offset = read_buffer_from_file(offset, ptr, &(node->first_child), 1, sizeof(size_t));
+    offset = read_buffer_from_file(offset, ptr, &(node->parent), 1, sizeof(size_t));
+    offset = read_buffer_from_file(offset, ptr, &(node->prev_sibling), 1, sizeof(size_t));
+    offset = read_buffer_from_file(offset, ptr, &(node->next_sibling), 1, sizeof(size_t));
+    offset = read_buffer_from_file(offset, ptr, &(node->value_len), 1, sizeof(size_t));
+    offset = read_buffer_from_file(offset, ptr, &(node->value_t), 1, sizeof(int8_t));
+    offset = read_value_from_file(&(node->value_c), node->value_t, node->value_len, offset, ptr);
+}

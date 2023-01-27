@@ -13,11 +13,23 @@ size_t find_free_space(size_t block, size_t size, FILE* ptr){
     return 0;
 }
 
-void delete_block(size_t offset, FILE* ptr){
+void delete_block(size_t offset, size_t* tree_head_offset, FILE* ptr){
     size_t next = read_block_next(ptr, offset);
     size_t prev = read_block_prev(ptr, offset);
-    update_block_next(ptr, prev, next);
-    update_block_prev(ptr, next, prev);
+
+    if(prev == 0){ //первый в списке
+        *tree_head_offset = next;
+        update_block_prev(ptr, next, 0);
+    }else if (next == 0){//последний в списке
+        update_block_next(ptr, prev, 0);
+    }else{// в середине
+        update_block_next(ptr, prev, next);
+        update_block_prev(ptr, next, prev);
+    }
+
+    //ВАЖНО! единственным быть не может, потому что
+    //первая дырка при старте специально делается маленькой
+    //чтобы в неё не влезла ни одна нода, но чтобы не возиться при её удалении
 }
 
 void create_block(size_t* free_space_offset, size_t block_offset, size_t block_size, FILE* ptr){

@@ -89,9 +89,15 @@ void fill_nodes_value_meta(Node* node, Value* value){
 
 //TODO: check if it's propper
 void free_node(Node* node){
-    if(!node) return;
-    if(node->value_t == string_type) free((char*)(node->value_c.string_value));
+    free_value(node);
     free(node);
+}
+
+void free_value(Node* node){
+    if(!node) return;
+    if(node->value_t == string_type){
+        free((char*)(node->value_c.string_value));
+    }
 }
 
 void print_node_header(Node* node){
