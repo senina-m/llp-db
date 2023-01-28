@@ -114,6 +114,7 @@ void print_node(Node* node){
     print_node_header(node);
     cout << ", t:" << (int) node->value_t;
     cout << ", v:" << value_to_string(&(node->value_c), get_t_by_int(node->value_t));
+    cout << endl;
 }
 
 

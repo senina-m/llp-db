@@ -151,7 +151,6 @@ void print_tree(size_t tree_offset, FILE* ptr, size_t spaces){
     }
     Node* node = read_node(tree_offset, ptr);
     print_node(node);
-    cout << endl;
     
     size_t next_sibling = node->next_sibling; 
     size_t first_child = node->first_child;

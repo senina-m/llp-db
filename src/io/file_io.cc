@@ -47,6 +47,11 @@ void close_file(FILE* ptr){
     fclose(ptr);
 }
 
+void clean_file(const char* filename){
+    FILE* file_ptr = fopen(filename, "w");
+    fclose(file_ptr);
+}
+
 
 #endif
 

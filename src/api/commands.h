@@ -53,4 +53,7 @@ void open(const char* filename);
 Node* add_node(Value v, Node* parent);
 void delete_node(Node* parent);
 void edit_node(Value v, Node* node);
+Node* read_first();
 Iter find_nodes(Condition condition);
+void print(Node* node);
+void f_node(Node* node);

@@ -38,6 +38,10 @@ void edit_node(Value v, Node* node){
     edit_node_db(node, &v);
 }
 
+Node* read_first(){
+    return read_first_node();
+}
+
 Iter find_nodes(Condition condition){
     Iter res = Iter(condition);
     return res;
@@ -45,6 +49,14 @@ Iter find_nodes(Condition condition){
 
 Node* Iter::operator*() {
     return node;
+}
+
+void print(Node* node){
+    print_node(node);
+}
+
+void f_node(Node* node){
+    free_node(node);
 }
 
 void static looking_at(Node* node){

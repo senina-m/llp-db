@@ -96,7 +96,6 @@ void static move_node(Node* node){
     }else{//дырка нашлась
         node->node_len = read_block_size(ptr, node->offset); // записываем ноду вместо всей дырки
         delete_block(node->offset, &(header->free_space_offset), ptr); // удаляем дырку
-        print_free_space(header->free_space_offset, ptr);
     }
 }
 
@@ -170,7 +169,7 @@ void edit_node_db(Node* node, Value* value){
 
         node->node_len = get_node_real_len(node);//чтобы move_node искал правильный размер для дырки
         move_node(node); //обновляет node_len
-        cout << endl;
+        
         uppdate_children_by_parent_offset(node);//нужно обновить в детях оффсет родителя, если у ноды есть дети.
         
         if(node->prev_sibling == 0){//если это первый ребёнок этого родителя, родителя нужно уведомить, куда он переехал
