@@ -72,18 +72,17 @@ bool equal_values(Value* value, Value_c* c, Value_t t){
 }
 
 void fill_nodes_value_meta(Node* node, Value* value){
+    free_value(node);
     node->value_len = get_value_size(&(value->c), value->t);
     node->value_t = (int8_t) value->t;
+    node->value_c = value->c;
 
-    if(value->t == string_type){
-        int size = strlen(value->c.string_value) + 1;
-        // cout << size << " sizeof(" << value_to_string(&(value->c), value->t) << ")" << endl;
-        const char* str = mmalloc_array(char, size);
-        strncpy((char*) str, value->c.string_value, size);
-        node->value_c.string_value = str;
-    }else{
-        node->value_c = value->c;
-    }
+        //to copy string values
+        // int size = strlen(value->c.string_value) + 1;
+        // // cout << size << " sizeof(" << value_to_string(&(value->c), value->t) << ")" << endl;
+        // const char* str = mmalloc_array(char, size);
+        // strncpy((char*) str, value->c.string_value, size);
+        // node->value_c.string_value = str;
 }
 
 

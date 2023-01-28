@@ -18,11 +18,11 @@ bool compare_values(Condition condition, Node* node){
 }
 
 void close(){
-    close_file_bd();
+    close_file_db();
 }
 
 void open(const char* filename){
-    open_file_bd(filename);
+    open_file_db(filename);
 }
 
 Node* add_node(Value v, Node* parent){

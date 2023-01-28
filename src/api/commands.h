@@ -1,4 +1,5 @@
 #include "../db/db_node.h"
+#pragma once
 
 enum Compare{
     EQUAL,

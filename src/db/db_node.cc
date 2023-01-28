@@ -3,7 +3,7 @@ FILE* ptr;
 size_t end_of_last_node_offset;
 File_header* header = NULL;
 
-void open_file_bd(const char* fn){
+void open_file_db(const char* fn){
     ptr = open_file(fn);
     size_t size = get_file_len(fn);
     if(size <= 1){//создать голову и первый блок и хедер и записать их в файл
@@ -34,7 +34,7 @@ void open_file_bd(const char* fn){
     }
 }
 
-void close_file_bd(){
+void close_file_db(){
     write_header(header, ptr);
     close_file(ptr);
     free(header);
@@ -43,6 +43,9 @@ void close_file_bd(){
 
 Node* read_first_node(){
     return read_node(header->tree_head_offset, ptr);
+}
+size_t get_tree_offset(){
+    return header->tree_head_offset;
 }
 
 Node* read_offset_node(size_t offset){
