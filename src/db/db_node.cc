@@ -1,7 +1,7 @@
 #include "db_node.h"
 FILE* ptr;
 size_t end_of_last_node_offset;
-File_header* header;
+File_header* header = NULL;
 
 void open_file_bd(const char* fn){
     ptr = open_file(fn);
@@ -38,6 +38,7 @@ void close_file_bd(){
     write_header(header, ptr);
     close_file(ptr);
     free(header);
+    header = NULL;
 }
 
 Node* read_first_node(){
@@ -46,6 +47,16 @@ Node* read_first_node(){
 
 Node* read_offset_node(size_t offset){
     return read_node(offset, ptr);
+}
+
+void replace_node_db(size_t new_offset, Node* node){
+    replace_node(new_offset, node, ptr);
+}
+
+bool check_not_head(size_t offset){
+    if (header == NULL) return false;
+    if (offset == header->tree_head_offset) return false;
+    return true;
 }
 
 size_t static get_last_child(Node* parent){

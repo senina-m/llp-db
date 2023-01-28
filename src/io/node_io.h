@@ -24,3 +24,4 @@ void write_node_value(Node* node, FILE* ptr);
 void print_tree(size_t tree_offset, FILE* ptr, size_t spaces);
 
 void update_node(Node* node, FILE* ptr);
+void replace_node(size_t new_offset, Node* node, FILE* ptr);

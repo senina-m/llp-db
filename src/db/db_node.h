@@ -13,3 +13,5 @@ size_t get_node_real_len(Node* node);
 
 Node* read_offset_node(size_t offset);
 Node* read_first_node();
+bool check_not_head(size_t offset);
+void replace_node_db(size_t new_offset, Node* node);
