@@ -5,7 +5,7 @@ a, b = [], []
 
 for i in f:
     x, y = i.split(",")
-    a.append(int(x)*5)
+    a.append(int(x))
     b.append(float(y))
 
 plt.plot(a, b)

@@ -163,15 +163,15 @@ typedef struct Block{
 ```
 
 В начале файла хранится служебная информация о началах списков. 
-![header](/info_pictures/header-diagram.png)
+![header](./info_pictures/header-diagram.png)
 
 Сами ноды в дереве хранят следующие ссылки:
 
-![node](/info_pictures/node.png)
+![node](./info_pictures/node.png)
 
 А дерево нод соответственно выглядит вот так:
 
-![tree](/info_pictures/tree.png)
+![tree](./info_pictures/tree.png)
 
 ## Модули программы
 
@@ -190,16 +190,16 @@ Parrot OS версия ядра 5.16.0-12, CPU: Intel Core i7-11800H, 16Gb RAM
 
 ### Результаты
 Добавление в дерево новой ноды
-![insert](/results_pictures/insert.png)
+![insert](./results_pictures/insert.png)
 
 Изменение ноды
-![insert](/results_pictures/edit.png)
+![insert](./results_pictures/edit.png)
 
 Удаление ноды
-![insert](/results_pictures/deletion.png)
+![insert](./results_pictures/deletion.png)
 
 Поиск
-![insert](/results_pictures/find.png)
+![insert](./results_pictures/find.png)
 
 Размер файла от размера дерева
-![insert](/results_pictures/size.png)
+![insert](./results_pictures/size.png)
